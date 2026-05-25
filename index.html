@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora Alexander Godoy</title>
+    <link rel="icon" type="image/png" href="recursos/img/Logo.png">
+    
+    <style>
+        /* Configuramos que el HTML y Body ocupen todo el alto */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Century Gothic', AppleGothic, sans-serif;
+            background-color: #f4f7f6;
+            color: #333333; /* Color de letra general */
+        }
+
+        /* Usamos Flexbox para empujar el footer hacia abajo */
+        body {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            
+        }
+
+        header {
+            padding: 40px 20px;
+            background-color: #4c3b9d;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* El main crecerá para ocupar el espacio disponible */
+        main {
+            flex: 1; 
+            padding: 30px 20px;
+            max-width: 1200px;
+            margin: 0 auto; /* Centra el contenido horizontalmente */
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            border-top: 3px solid #000000;
+            background-color: #2a7474;
+            color: white;
+        }
+
+        footer img {
+            height: 40px;
+        }
+        /*Prompt1: Hola, tengo un archivo HTML con un <main>. Dame un código CSS para una clase llamada .card-semana que tenga fondo blanco, bordes redondeados, una sombra suave y que separe el contenido del fondo. También dame el código HTML para poner la 'Semana 1' dentro de esa tarjeta".*/
+            .card-semana {
+                background-color:#ffffff; /* Fondo blanco */
+                border-radius: 15px;     /* Bordes redondeados */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+                padding: 25px;           /* Separación interna del contenido */
+                margin: 20px 0;          /* Separación externa entre tarjetas */
+                border: 1px solid #e0e0e0; /* Un borde muy fino para definir mejor la forma */
+                text-align: left;        /* Alineación del texto a la izquierda */
+
+                /* Agregamos una transición para que el movimiento sea suave y no brusco */
+                transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+                
+                /* Configuración Flexbox */
+                display: flex;
+                flex-direction: row; /* Imagen a la izquierda, texto a la derecha */
+                align-items: center; /* Centra verticalmente los elementos */
+                gap: 20px;           /* Espacio entre la imagen y el texto */
+
+                position: relative;
+                overflow: hidden; /* Para que nada se salga de las esquinas redondeadas */
+                
+                /* Borde casi invisible pero que define la forma */
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                
+                /* Sombra multicapa: la hace ver más real y suave */
+                box-shadow: 
+                    0 4px 6px -1px rgba(0, 0, 0, 0.05), 
+                    0 10px 15px -3px rgba(0, 0, 0, 0.08);
+                
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+            /* Opcional: para que el título de la semana resalte */
+            .card-semana h3 {
+                margin-top: 0;
+                color: rgb(76, 59, 157); /* Usando el color de tu header */
+            }
+
+        /*una línea vertical morada elegante al inicio de cada tarjeta, dándole un toque de diseño de "dashboard" administrativo.*/
+            .card-semana:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 6px;
+                background-color: #4c3b9d; /* El morado de tu marca */   
+            }
+
+        /*Prompt2:Gemini, ayúdame a que cuando pase el mouse sobre mi tarjeta de semana, esta se eleve un poco y el borde cambie a color morado (#4c3b9d). Usa el efecto 'hover' de CSS"*/
+            /* Efecto al pasar el mouse (Hover) */
+            .card-semana:hover {
+                cursor: pointer;              /* Cambia el cursor a una mano */
+                transform: translateY(-8px) scale(1.09); /* Se eleva y crece un 1% */
+                border-color: rgba(76, 59, 157, 0.3);
+                box-shadow: 0 20px 25px -5px rgba(76, 59, 157, 0.15);
+                
+            }
+
+        /*Prompt3: Dame un código CSS para que dentro de mi tarjeta de semana pueda poner una imagen a la izquierda y el texto de mi bitácora a la derecha. Asegúrate que en el celular se vea uno debajo del otro*/
+
+            /* Ajuste para la imagen dentro de la tarjeta */
+            .card-semana img {
+                width: 150px;       /* Tamaño fijo para la imagen */
+                height: 150px;
+                object-fit: cover;  /* Evita que la imagen se deforme */
+                border-radius: 8px;
+            }
+            /* Ajuste para el texto */
+            .card-info {
+                flex: 1;            /* El texto toma el resto del espacio disponible */
+                text-align: left;
+            }
+            
+            
+        
+
+        /* Responsive: Cuando la pantalla sea pequeña (celulares) */
+            @media (max-width: 600px) {
+                .card-semana {
+                        flex-direction: column; /* Apila los elementos verticalmente */
+                        text-align: center;
+                    }
+                    .card-info {
+                        text-align: center;
+                    }
+                    .card-semana img {
+                        width: 100%;      /* La imagen ocupa todo el ancho en celular */
+                        max-width: 300px;
+                    }
+                footer {
+                    flex-direction: column;
+                    gap: 15px;
+                    padding: 20px;
+                }
+            }
+            .contenedor-pdf {
+                margin-top: 20px;
+                border: 2px solid var(--borde-color); /* Usando el color azul que ya tenías */
+                border-radius: 8px;
+                overflow: hidden; /* Para que las esquinas del PDF se vean redondeadas */
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            }
+
+            iframe {
+                border: none;
+                display: block; /* Elimina espacios extra abajo */
+            }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bitácora Segunda y Tercera unidad</h1>
+    </header>
+    <main>
+        <div class="card-semana">
+            <div class="card-info">
+                <h1>Introducción a Arduino</h1>
+                <p>Visualización del documento técnico de Arduino:</p>
+            </div>
+                <div class="contenedor-pdf">
+                <iframe src="recursos/PDF/S1/Introducción Arduino.pdf" width="1000px" height="300px">
+                    <p>Tu navegador no soporta la visualización de PDFs. 
+                        <a href="recursos/PDF/S1/Introducción Arduino.pdf" target="_blank">Haz clic aquí para descargarlo.</a>
+                    </p>
+                </iframe>
+            </div>
+        </div>
+        <div class="card-semana">
+            <img src="recursos/img/arduinogirar.png" alt="Actividad de la semana">
+            <div class="card-info">
+                <h3>Introducción a Robotica</h3>
+                <p>Aquí puedes colocar la descripción de las actividades, bitácoras o proyectos realizados durante esta semana.</p>
+            </div>
+        </div>
+        <div class="card-semana">
+            <h3>Semana 3</h3>
+            <p>Contenido correspondiente a la siguiente etapa del proyecto.</p>
+        </div>
+    </main>
+    <footer>
+        <span>© 2026 Alexander Godoy</span>
+        <img src="https://www.capouilliez.edu.gt/assets/img/logo.png" alt="Logo Colegio">
+    </footer>
+</body>
+</html>
